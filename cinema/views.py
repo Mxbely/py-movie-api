@@ -22,7 +22,7 @@ def movie_list(request):
 
 @api_view(["GET", "PUT", "DELETE"])
 def movie_detail(request, pk):
-    movie = Movie.objects.get(pk=pk)
+    movie = Movie.objects.get_object_or_404(pk=pk)
     if request.method == "GET":
         serializer = MovieSerializer(movie)
         return Response(serializer.data, status=status.HTTP_200_OK)
